@@ -10,7 +10,7 @@ class MainTheme {
   static TextStyle hintTextStyle = const TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.bold,
-      color: MainStyle.primaryColor,
+      // color: MainStyle.primaryColor,
       fontFamily: 'Tajawal');
 
   static TextStyle headingTextStyle = const TextStyle(
@@ -22,7 +22,9 @@ class MainTheme {
   static TextStyle subTextStyle =
       TextStyle(fontSize: 15, color: Colors.grey[200], fontFamily: 'Tajawal');
   static TextStyle subTextStyle2 = const TextStyle(
-      fontSize: 10, color: MainStyle.primaryColor, fontFamily: 'Tajawal');
+      fontSize: 10,
+      // color: MainStyle.primaryColor,
+      fontFamily: 'Tajawal');
 
   static TextStyle errorTextStyle = const TextStyle(
       fontSize: 20,
