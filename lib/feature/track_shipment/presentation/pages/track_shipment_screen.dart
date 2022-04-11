@@ -1,19 +1,20 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:weevo_end_customer/core/themes/screen_utility.dart';
+import 'package:weevo_end_customer/core/utlis/helper.dart';
 import 'package:weevo_end_customer/core/utlis/size_config.dart';
 import 'package:weevo_end_customer/core/widgets/custom_text_field.dart';
+import 'package:weevo_end_customer/feature/shipment_details/presentation/pages/shipment_detail_screen.dart';
 import '../../../../core/widgets/custom_button.dart';
 
 class TrackShipmentScreen extends StatelessWidget {
   const TrackShipmentScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    int? shipmentId;
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -102,22 +103,14 @@ class TrackShipmentScreen extends StatelessWidget {
                           enableText: true,
                           verticalPadding: .03,
                           horizontalPadding: .05,
+                          keyboardType: TextInputType.number,
                           suffixIcon: Padding(
                             padding:
                                 EdgeInsets.all(SizeConfig.screenWidth * .025),
                             child: Image.asset('assets/images/search_icon.png'),
                           ),
                           onChange: (v) {
-                            // ref.read(suggestionsProvider.state).state = [
-                            //   ...e.data!
-                            //       .where(
-                            //         (element) => element.name!
-                            //         .startsWith(v.toLowerCase().trim()),
-                            //   )
-                            //       .toList()
-                            // ];
-                            // debugPrint('ll' + suggestions.toString());
-                            // debugPrint('ll' + e.data!.toString());
+                          shipmentId=int.parse(v);
                           },
                         ),
                       ),
@@ -131,21 +124,7 @@ class TrackShipmentScreen extends StatelessWidget {
                     child: CustomBtn(
                       showImage: false,
                       onChange: () async {
-                        // return await _dialog.showOptionDialog(
-                        //     context: context,
-                        //     msg: 'هل ترغب بحذف المنتج ؟',
-                        //     okFun: () async {
-                        //
-                        //       // ref.read(deleteProductNotifier.notifier)
-                        //       //     .deleteProduct(productId: productId!);
-                        //       // pushAndRemoveUntil(ProductScreen()
-                        //       // );
-                        //     },
-                        //     okMsg: 'نعم',
-                        //     cancelMsg: 'لا',
-                        //     cancelFun: () {
-                        //       return;
-                        //     });
+                        push(ShipmentDetailsScreen(shipmentId: shipmentId));
                       },
                       backgroundColor: weevoPrimaryOrangeColor,
                       height: SizeConfig.screenHeight * .075,

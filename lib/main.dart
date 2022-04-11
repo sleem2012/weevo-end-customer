@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:weevo_end_customer/feature/product_details/presentation/pages/product_detail_screen.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'core/themes/screen_utility.dart';
 import 'core/utlis/helper.dart';
@@ -24,6 +24,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,overlays: [SystemUiOverlay.bottom],);
+  initializeDateFormatting('ar_EG');
 
 
   runApp( const MyApp());

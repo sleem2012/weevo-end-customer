@@ -42,6 +42,10 @@ dependencies:
 #  carousel_slider:
   fancy_shimmer_image:
   card_swiper: ^2.0.3
+  flutter_rating_bar:
+  url_launcher:
+  intl:
+
 
 
 
