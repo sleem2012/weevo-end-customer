@@ -21,6 +21,8 @@ class CustomTextField extends StatelessWidget {
     this.fillColor,
     this.filled,
     this.verticalPadding,
+    this.horizontalPadding,
+
     this.horizontalMargin,
     this.globalKey,
     this.maxLines = 1,
@@ -44,6 +46,7 @@ class CustomTextField extends StatelessWidget {
   final Color? fillColor;
   final FocusNode? focusNode;
   final double? verticalPadding;
+  final double? horizontalPadding;
   final double? horizontalMargin;
   final Key? globalKey;
   final int? maxLines;
@@ -73,13 +76,13 @@ onTap: onTap,
             fillColor: fillColor ?? Colors.transparent,
             filled: filled,
             labelText: labelText,
-            labelStyle: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).primaryColor,
+            labelStyle: const TextStyle(
+              // fontWeight: FontWeight.bold,
+              color: Colors.grey,
             ),
             contentPadding: EdgeInsets.symmetric(
                 vertical: SizeConfig.screenHeight * (verticalPadding ?? 0.022),
-                horizontal: SizeConfig.screenWidth * 0.02),
+                horizontal: SizeConfig.screenWidth *(horizontalPadding ??  0.02)),
             suffixIcon: suffixIcon,
             errorStyle: const TextStyle(
               color: Colors.red,
@@ -101,8 +104,8 @@ onTap: onTap,
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14),
-              borderSide: BorderSide(
-                color: Color(0xffF5F5F5),
+              borderSide: const BorderSide(
+                color:  Color(0xffF5F5F5),
                 width: 2,
               ),
             ),
@@ -115,8 +118,8 @@ onTap: onTap,
             ),
             disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14),
-              borderSide: BorderSide(
-                color: Color(0xffF5F5F5),
+              borderSide: const BorderSide(
+                color: const Color(0xffF5F5F5),
                 width: 4,
               ),
             ),
@@ -133,7 +136,6 @@ onTap: onTap,
             hintStyle: TextStyle(
               color: Colors.grey,
               fontSize: fontSize,
-              fontFamily: MainTheme.productTextFont,
             ),
           ),
         ),

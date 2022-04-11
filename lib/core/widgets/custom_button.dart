@@ -30,7 +30,7 @@ class CustomBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: height ?? SizeConfig.screenHeight * 0.06,
-      width: width ?? SizeConfig.screenWidth * 0.4,
+      width: width ?? SizeConfig.screenWidth * 0.7,
       child: MaterialButton(
         onPressed: onChange,
         color: backgroundColor ?? Colors.blue[100],

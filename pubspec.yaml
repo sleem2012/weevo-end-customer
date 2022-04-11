@@ -39,6 +39,10 @@ dependencies:
   hooks_riverpod: ^2.0.0-dev.5
   dio: ^4.0.4
   fluttertoast: ^8.0.8
+#  carousel_slider:
+  fancy_shimmer_image:
+  card_swiper: ^2.0.3
+
 
 
 
@@ -79,17 +83,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: ArabFont
+      fonts:
+        - asset: assets/fonts/ibm_plex_regular.ttf
+        - asset: assets/fonts/ibm_plex_bold.ttf
+          weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
