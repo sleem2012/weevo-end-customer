@@ -157,6 +157,8 @@ class TrackShipmentScreen extends StatelessWidget {
                       onChange: () async {
                         if (_formKey.currentState!.validate()) {
                           push(ShipmentDetailsScreen(shipmentId: shipmentId));
+                          FocusManager.instance.primaryFocus?.unfocus();
+
 
                         }
                       },

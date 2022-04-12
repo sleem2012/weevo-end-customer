@@ -92,8 +92,8 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                           ),
                         ),
                         body: SingleChildScrollView(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8.0, horizontal: 4.0),
+                          padding:  EdgeInsets.symmetric(
+                              vertical: SizeConfig.screenHeight*.01, horizontal: SizeConfig.screenWidth*.008),
                           child: Column(
                             children: [
                               e.entity!.status ==
@@ -104,9 +104,9 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                       'on-the-way-to-get-shipment-from-merchant' ||
                                   e.entity!.status == 'on-delivery'
                                   ? Container(
-                                height: 81,
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 8.0),
+                                height: SizeConfig.screenHeight*.1,
+                                margin:  EdgeInsets.symmetric(
+                                    horizontal: SizeConfig.screenWidth*.02),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(12),
                                   color: Colors.white,
@@ -118,17 +118,17 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                     )
                                   ],
                                 ),
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0,
-                                  vertical: 8.0,
+                                padding:  EdgeInsets.symmetric(
+                                  horizontal: SizeConfig.screenWidth*.02,
+                                  vertical: SizeConfig.screenWidth*.01,
                                 ),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     ClipOval(
                                       child: SizedBox(
-                                        height: 60,
-                                        width: 60,
+                                        height: SizeConfig.screenWidth*.13,
+                                        width: SizeConfig.screenWidth*.13,
                                         child: e.entity!.courier!.photo !=
                                             null &&
                                             e.entity!.courier!.photo!
@@ -164,8 +164,8 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                 .firstName} ${e.entity!
                                                 .courier!
                                                 .lastName}',
-                                            style: const TextStyle(
-                                              fontSize: 15.0,
+                                            style:  TextStyle(
+                                              fontSize: SizeConfig.screenWidth*.033,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
@@ -188,7 +188,7 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                   direction: Axis.horizontal,
                                                   allowHalfRating: true,
                                                   itemCount: 5,
-                                                  itemSize: 18.0,
+                                                  itemSize: SizeConfig.screenWidth*.038,
                                                   itemBuilder: (context, _) =>
                                                       Icon(
                                                         Icons.star,
@@ -196,14 +196,14 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                       ),
                                                   onRatingUpdate: (rating) {},
                                                 ),
-                                                const SizedBox(
-                                                  width: 2,
+                                                 SizedBox(
+                                                  width: SizeConfig.screenWidth*.02,
                                                 ),
                                                 Text(
                                                   e.entity!.courier!
                                                       .cachedAverageRating!.substring(0,3),
-                                                  style: const TextStyle(
-                                                    fontSize: 10.0,
+                                                  style:  TextStyle(
+                                                    fontSize: SizeConfig.screenWidth*.027,
                                                     fontWeight: FontWeight.w500,
                                                     color: Colors.grey,
                                                   ),
@@ -214,7 +214,7 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                       ),
                                     ),
 
-                                    const SizedBox(width: 4),
+                                     SizedBox(width: SizeConfig.screenWidth*.02),
                                     GestureDetector(
                                       onTap: () async {
                                         await launch(
@@ -223,8 +223,8 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                         );
                                       },
                                       child: Container(
-                                        height: 32,
-                                        width: 32,
+                                        height: SizeConfig.screenHeight*.3,
+                                        width: SizeConfig.screenWidth*.07,
                                         decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                           color: Color(0xffFFE9DF),
@@ -246,13 +246,13 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                   e.entity!.status ==
                                       'on-the-way-to-get-shipment-from-merchant' ||
                                   e.entity!.status == 'on-delivery'
-                                  ? const SizedBox(
-                                height: 10,
+                                  ?  SizedBox(
+                                height: SizeConfig.screenHeight*.015,
                               )
                                   : Container(),
                               Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 8.0),
+                                margin:  EdgeInsets.symmetric(
+                                    horizontal: SizeConfig.screenHeight*.01),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(16),
                                   color: Colors.white,
@@ -269,18 +269,18 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                   child: FancyShimmerImage(
                                     imageUrl:
                                     e.entity!.products![0].productInfo!.image!,
-                                    height: 196,
+                                    height: SizeConfig.screenHeight*.35,
                                     width: SizeConfig.screenWidth,
                                     boxFit: BoxFit.cover,
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                height: 10,
+                               SizedBox(
+                                height: SizeConfig.screenHeight*.02,
                               ),
                               Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 8.0),
+                                margin:  EdgeInsets.symmetric(
+                                    horizontal: SizeConfig.screenWidth*.021),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(12),
                                   color: Colors.white,
@@ -292,7 +292,7 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                     )
                                   ],
                                 ),
-                                padding: const EdgeInsets.all(20.0),
+                                padding:  EdgeInsets.all(SizeConfig.screenHeight*.028),
                                 child: Column(
                                   children: [
                                     Row(
@@ -306,24 +306,24 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                 e.entity!.products![0]
                                                     .productInfo!
                                                     .name!,
-                                                style: const TextStyle(
-                                                  fontSize: 19,
+                                                style:  TextStyle(
+                                                  fontSize: SizeConfig.screenWidth*.04,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                                 strutStyle: const StrutStyle(
                                                   forceStrutHeight: true,
                                                 ),
                                               ),
-                                              const SizedBox(
-                                                height: 7,
+                                               SizedBox(
+                                                height: SizeConfig.screenHeight*.01,
                                               ),
                                               Text(
                                                 e.entity!.products![0]
                                                     .productInfo!
                                                     .description!,
-                                                style: const TextStyle(
-                                                  fontSize: 11.0,
-                                                  color: Color(0xff858585),
+                                                style:  TextStyle(
+                                                  fontSize: SizeConfig.screenHeight*.015,
+                                                  color: const Color(0xff858585),
                                                 ),
                                                 strutStyle: const StrutStyle(
                                                   forceStrutHeight: true,
@@ -332,7 +332,7 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                             ],
                                           ),
                                         ),
-                                        const SizedBox(width: 8),
+                                         SizedBox(width: SizeConfig.screenWidth*.03),
                                         Row(children: [
 
                                           Row(
@@ -347,15 +347,15 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                 height: 25,
                                                 width: 25,
                                               ),
-                                              const SizedBox(
-                                                width: 8,
+                                               SizedBox(
+                                                width: SizeConfig.screenWidth*.01,
                                               ),
                                               Text(
                                                 '${e.entity!.products![0]
                                                     .productInfo!.productCategory!
                                                     .name}',
-                                                style: const TextStyle(
-                                                  fontSize: 12.0,
+                                                style:  TextStyle(
+                                                  fontSize: SizeConfig.screenWidth*.025,
                                                 ),
                                               )
                                             ],
@@ -538,27 +538,27 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                           width: 5,
                                         ),
                                         e.entity!.paymentMethod == 'cod'
-                                            ? const Text(
+                                            ?  Text(
                                           'دفع مقدم',
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
-                                            fontSize: 12.0,
+                                            fontSize: SizeConfig.screenWidth*.03,
                                             fontWeight: FontWeight.bold,
                                           ),
-                                          strutStyle: StrutStyle(
+                                          strutStyle: const StrutStyle(
                                             forceStrutHeight: true,
                                           ),
                                         )
-                                            : const Text(
+                                            :  Text(
                                           'مدفوع أونلاين',
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
-                                            fontSize: 12.0,
+                                            fontSize: SizeConfig.screenWidth*.03,
                                             fontWeight: FontWeight.bold,
                                           ),
-                                          strutStyle: StrutStyle(
+                                          strutStyle: const StrutStyle(
                                             forceStrutHeight: true,
                                           ),
                                         ),
@@ -567,11 +567,11 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                   ],
                                 ),
                               ),
-                              const SizedBox(
-                                height: 10,
+                               SizedBox(
+                                height: SizeConfig.screenHeight*.01,
                               ),
                               Container(
-                                margin: const EdgeInsets.all(4.0),
+                                margin:  EdgeInsets.all(SizeConfig.screenWidth*.01),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20.0),
                                     color: Colors.white,
@@ -582,7 +582,7 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                         color: Colors.black.withOpacity(0.1),
                                       )
                                     ]),
-                                padding: const EdgeInsets.all(20.0),
+                                padding:  EdgeInsets.all(SizeConfig.screenWidth*.046),
                                 child: Column(
                                   crossAxisAlignment:
                                   CrossAxisAlignment.start,
@@ -598,8 +598,8 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                               .start,
                                           children: [
                                             Container(
-                                              height: 10,
-                                              width: 10,
+                                              height: SizeConfig.screenHeight*.013,
+                                              width: SizeConfig.screenWidth*.02,
                                               decoration: BoxDecoration(
                                                   color: weevoPrimaryOrangeColor,
                                                   borderRadius: BorderRadius
@@ -610,19 +610,19 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                               crossAxisAlignment: CrossAxisAlignment
                                                   .start,
                                               children: [
-                                                const Text(
+                                                 Text(
                                                   'المنزل',
                                                   maxLines: 1,
                                                   overflow:
                                                   TextOverflow
                                                       .ellipsis,
                                                   style: TextStyle(
-                                                    fontSize: 15.0
+                                                    fontSize: SizeConfig.screenWidth*.033
                                                     ,
                                                     fontWeight: FontWeight
                                                         .bold,
                                                   ),
-                                                  strutStyle: StrutStyle(
+                                                  strutStyle: const StrutStyle(
                                                     forceStrutHeight: true,
                                                   ),
                                                 ),
@@ -630,17 +630,17 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                     height: 4),
                                                 Row(
                                                   children:  [
-                                                    const Text(
+                                                     Text(
                                                       'من - ',
                                                       maxLines: 1,
                                                       overflow:
                                                       TextOverflow
                                                           .ellipsis,
                                                       style: TextStyle(
-                                                        fontSize: 12.0
+                                                        fontSize: SizeConfig.screenWidth*.03
                                                         ,
                                                       ),
-                                                      strutStyle: StrutStyle(
+                                                      strutStyle: const StrutStyle(
                                                         forceStrutHeight: true,
                                                       ),
                                                     ),
@@ -652,8 +652,8 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                       overflow:
                                                       TextOverflow
                                                           .ellipsis,
-                                                      style: const TextStyle(
-                                                        fontSize: 12.0
+                                                      style:  TextStyle(
+                                                        fontSize: SizeConfig.screenWidth*.028
                                                         ,
                                                       ),
                                                       strutStyle: const StrutStyle(
@@ -667,8 +667,8 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                           ],
                                         ),
                                         Container(
-                                            height: 31,
-                                            width: 100,
+                                            height: SizeConfig.screenHeight*.05,
+                                            width: SizeConfig.screenWidth*.23,
                                             decoration: BoxDecoration(
                                               color: const Color(0xffF6F6F6),
                                               borderRadius: BorderRadius
@@ -755,8 +755,9 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                   maxLines: 1,
                                                   overflow:
                                                   TextOverflow.ellipsis,
-                                                  style: const TextStyle(
-                                                    fontSize: 10.0,
+                                                  style:  TextStyle(
+                                                    fontSize:   SizeConfig.screenWidth*.022
+                                                    ,
                                                     fontWeight: FontWeight
                                                         .w600,
                                                   ),
@@ -776,8 +777,8 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                   maxLines: 1,
                                                   overflow:
                                                   TextOverflow.ellipsis,
-                                                  style: const TextStyle(
-                                                    fontSize: 10.0,
+                                                  style:  TextStyle(
+                                                    fontSize: SizeConfig.screenWidth*.021,
                                                   ),
                                                   strutStyle: const StrutStyle(
                                                     forceStrutHeight: true,
@@ -808,8 +809,8 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                               .start,
                                           children: [
                                             Container(
-                                              height: 10,
-                                              width: 10,
+                                              height: SizeConfig.screenHeight*.013,
+                                              width: SizeConfig.screenWidth*.02,
                                               decoration: BoxDecoration(
                                                   color: weevoPrimaryBlueColor,
                                                   borderRadius: BorderRadius
@@ -827,8 +828,9 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                   overflow:
                                                   TextOverflow
                                                       .ellipsis,
-                                                  style: const TextStyle(
-                                                    fontSize: 15.0
+                                                  style:  TextStyle(
+                                                    fontSize: SizeConfig.screenWidth*.033
+
                                                     ,
                                                     fontWeight: FontWeight
                                                         .bold,
@@ -863,8 +865,8 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                       overflow:
                                                       TextOverflow
                                                           .ellipsis,
-                                                      style: const TextStyle(
-                                                        fontSize: 12.0
+                                                      style:  TextStyle(
+                                                        fontSize: SizeConfig.screenWidth*.028
                                                         ,
                                                       ),
                                                       strutStyle: const StrutStyle(
@@ -881,10 +883,10 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                   overflow:
                                                   TextOverflow
                                                       .ellipsis,
-                                                  style: const TextStyle(
-                                                    fontSize: 12.0
+                                                  style:  TextStyle(
+                                                    fontSize: SizeConfig.screenWidth*.028
                                                     ,
-                                                    color: Color(
+                                                    color: const Color(
                                                         0xffA1A1A1),
                                                   ),
                                                   strutStyle: const StrutStyle(
@@ -898,8 +900,8 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                         Column(
                                           children: [
                                             Container(
-                                                width: 100,
-                                                height: 31,
+                                                height: SizeConfig.screenHeight*.05,
+                                                width: SizeConfig.screenWidth*.23,
                                                 decoration: BoxDecoration(
                                                   color: const Color(
                                                       0xffF6F6F6),
@@ -990,8 +992,8 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                       maxLines: 1,
                                                       overflow:
                                                       TextOverflow.ellipsis,
-                                                      style: const TextStyle(
-                                                        fontSize: 10.0,
+                                                      style:  TextStyle(
+                                                        fontSize: SizeConfig.screenWidth*.022,
                                                         fontWeight: FontWeight
                                                             .w600,
                                                       ),
@@ -1012,8 +1014,8 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                       maxLines: 1,
                                                       overflow:
                                                       TextOverflow.ellipsis,
-                                                      style: const TextStyle(
-                                                        fontSize: 10.0,
+                                                      style:  TextStyle(
+                                                        fontSize: SizeConfig.screenWidth*.021,
                                                       ),
                                                       strutStyle: const StrutStyle(
                                                         forceStrutHeight: true,
@@ -1022,7 +1024,7 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                   ],
                                                 )
                                             ),
-                                            const SizedBox(height: 4),
+                                             SizedBox(height:SizeConfig.screenHeight*.018),
                                             e.entity!.status ==
                                                 'courier-applied-to-shipment' ||
                                                 e.entity!.status ==
@@ -1042,11 +1044,13 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                   },
                                                   child: Container(
                                                     height: 30,
-                                                    width: e.entity!
-                                                        .paymentMethod ==
-                                                        'online' ? 50 : 100,
-                                                    padding: const EdgeInsets
-                                                        .all(8.0),
+                                                    width:
+                                                    // e.entity!
+                                                    //     .paymentMethod ==
+                                                    //     'online' ? SizeConfig.screenWidth*.112 :
+                                                    SizeConfig.screenWidth*.233,
+                                                    padding:  EdgeInsets
+                                                        .all(SizeConfig.screenWidth*.01),
                                                     decoration: BoxDecoration(
                                                       color: const Color(
                                                           0xffFFE9DF),
@@ -1056,8 +1060,8 @@ class ShipmentDetailsScreen extends HookConsumerWidget {
                                                     ),
                                                     child: Image.asset(
                                                         'assets/images/big_phone_icon.png',
-                                                        height: 25.0,
-                                                        width: 25.0),
+                                                        height: SizeConfig.screenHeight*.022,
+                                                        width: SizeConfig.screenWidth*.1),
                                                   ),
                                                 ),
                                                 e.entity!.paymentMethod ==
