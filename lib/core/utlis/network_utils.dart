@@ -11,7 +11,7 @@ class NetworkUtils {
   NetworkUtils();
 
 
-  final baseUrl = '$baseurlTest';
+  final baseUrl = base_url;
   Dio dio = Dio();
   Response? response;
   final Map<String, String> _headers = {

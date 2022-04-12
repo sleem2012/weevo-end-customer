@@ -27,11 +27,11 @@ class Entity {
   String? receivingCity;
   String? receivingStreet;
   String? receivingLandmark;
-  num? receivingBuildingNumber;
-  num? receivingFloor;
-  num? receivingApartment;
-  num? receivingLat;
-  num? receivingLng;
+  String? receivingBuildingNumber;
+  String? receivingFloor;
+  String? receivingApartment;
+  String? receivingLat;
+  String? receivingLng;
   String? dateToReceiveShipment;
   String? deliveringState;
   String? deliveringCity;
@@ -61,10 +61,14 @@ class Entity {
   String? handoverQrcodeCourierToCustomer;
   int? isOfferBased;
   int? closed;
-  DateTime? closedAt;
+  String? closedAt;
   String? createdAt;
   String? updatedAt;
-  DateTime? deletedAt;
+  String? deletedAt;
+  ReceivingStateModel? receivingStateModel;
+  ReceivingCityModel? receivingCityModel;
+  ReceivingStateModel? deliveringStateModel;
+  ReceivingCityModel? deliveringCityModel;
   List<Products>? products;
   Merchant? merchant;
   Courier? courier;
@@ -114,6 +118,10 @@ class Entity {
         this.createdAt,
         this.updatedAt,
         this.deletedAt,
+        this.receivingStateModel,
+        this.receivingCityModel,
+        this.deliveringStateModel,
+        this.deliveringCityModel,
         this.products,
         this.merchant,
         this.courier});
@@ -166,6 +174,18 @@ class Entity {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     deletedAt = json['deleted_at'];
+    receivingStateModel = json['receiving_state_model'] != null
+        ? ReceivingStateModel.fromJson(json['receiving_state_model'])
+        : null;
+    receivingCityModel = json['receiving_city_model'] != null
+        ? ReceivingCityModel.fromJson(json['receiving_city_model'])
+        : null;
+    deliveringStateModel = json['delivering_state_model'] != null
+        ? ReceivingStateModel.fromJson(json['delivering_state_model'])
+        : null;
+    deliveringCityModel = json['delivering_city_model'] != null
+        ? ReceivingCityModel.fromJson(json['delivering_city_model'])
+        : null;
     if (json['products'] != null) {
       products = <Products>[];
       json['products'].forEach((v) {
@@ -231,6 +251,18 @@ class Entity {
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     data['deleted_at'] = deletedAt;
+    if (receivingStateModel != null) {
+      data['receiving_state_model'] = receivingStateModel!.toJson();
+    }
+    if (receivingCityModel != null) {
+      data['receiving_city_model'] = receivingCityModel!.toJson();
+    }
+    if (deliveringStateModel != null) {
+      data['delivering_state_model'] = deliveringStateModel!.toJson();
+    }
+    if (deliveringCityModel != null) {
+      data['delivering_city_model'] = deliveringCityModel!.toJson();
+    }
     if (products != null) {
       data['products'] = products!.map((v) => v.toJson()).toList();
     }
@@ -240,6 +272,80 @@ class Entity {
     if (courier != null) {
       data['courier'] = courier!.toJson();
     }
+    return data;
+  }
+}
+
+class ReceivingStateModel {
+  int? id;
+  String? name;
+  int? countryId;
+  String? createdAt;
+  String? updatedAt;
+  String? deletedAt;
+
+  ReceivingStateModel(
+      {this.id,
+        this.name,
+        this.countryId,
+        this.createdAt,
+        this.updatedAt,
+        this.deletedAt});
+
+  ReceivingStateModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    countryId = json['country_id'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    deletedAt = json['deleted_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['country_id'] = countryId;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['deleted_at'] = deletedAt;
+    return data;
+  }
+}
+
+class ReceivingCityModel {
+  int? id;
+  String? name;
+  int? stateId;
+  String? createdAt;
+  String? updatedAt;
+  String? deletedAt;
+
+  ReceivingCityModel(
+      {this.id,
+        this.name,
+        this.stateId,
+        this.createdAt,
+        this.updatedAt,
+        this.deletedAt});
+
+  ReceivingCityModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    stateId = json['state_id'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    deletedAt = json['deleted_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['state_id'] = stateId;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    data['deleted_at'] = deletedAt;
     return data;
   }
 }
@@ -308,6 +414,7 @@ class ProductInfo {
   String? width;
   String? height;
   String? weight;
+  ProductCategory? productCategory;
 
   ProductInfo(
       {this.id,
@@ -319,7 +426,8 @@ class ProductInfo {
         this.length,
         this.width,
         this.height,
-        this.weight});
+        this.weight,
+        this.productCategory});
 
   ProductInfo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -332,6 +440,9 @@ class ProductInfo {
     width = json['width'];
     height = json['height'];
     weight = json['weight'];
+    productCategory = json['product_category'] != null
+        ? ProductCategory.fromJson(json['product_category'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -346,6 +457,31 @@ class ProductInfo {
     data['width'] = width;
     data['height'] = height;
     data['weight'] = weight;
+    if (productCategory != null) {
+      data['product_category'] = productCategory!.toJson();
+    }
+    return data;
+  }
+}
+
+class ProductCategory {
+  int? id;
+  String? name;
+  String? image;
+
+  ProductCategory({this.id, this.name, this.image});
+
+  ProductCategory.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    image = json['image'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['image'] = image;
     return data;
   }
 }
@@ -360,8 +496,8 @@ class Merchant {
   String? phone;
   String? gender;
   String? company;
-  int? workTypeId;
-  int? categoryId;
+  num? workTypeId;
+  num? categoryId;
   int? online;
   String? cachedAverageRating;
   String? name;
@@ -427,7 +563,7 @@ class Courier {
   String? photo;
   String? phone;
   String? gender;
-  num? vehicleNumber;
+  String? vehicleNumber;
   String? vehicleColor;
   String? vehicleModel;
   String? deliveryMethod;

@@ -18,7 +18,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 3)).then((value) => pushAndRemoveUntil(const OnBoarding()));
+    Future.delayed(const Duration(seconds: 4)).then((value) => pushAndRemoveUntil(const OnBoarding()));
 
 
 

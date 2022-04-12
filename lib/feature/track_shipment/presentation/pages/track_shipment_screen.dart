@@ -1,21 +1,47 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:weevo_end_customer/core/themes/screen_utility.dart';
 import 'package:weevo_end_customer/core/utlis/helper.dart';
 import 'package:weevo_end_customer/core/utlis/size_config.dart';
 import 'package:weevo_end_customer/core/widgets/custom_text_field.dart';
 import 'package:weevo_end_customer/feature/shipment_details/presentation/pages/shipment_detail_screen.dart';
+import '../../../../core/widgets/action_dialog.dart';
 import '../../../../core/widgets/custom_button.dart';
 
 class TrackShipmentScreen extends StatelessWidget {
   const TrackShipmentScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    int? shipmentId;
 
-    return SafeArea(
+    int? shipmentId;
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+
+    return WillPopScope(
+    onWillPop: () async {
+      showDialog(
+        context: context,
+        builder: (context) => ActionDialog(
+          title: 'الخروج من التطبيق',
+          content: 'هل تود الخروج من التطبيق',
+          approveAction: 'نعم',
+          cancelAction: 'لا',
+          onApproveClick: () {
+            Navigator.pop(context);
+            SystemNavigator.pop();
+          },
+          onCancelClick: () {
+            Navigator.pop(context);
+          },
+        ),
+      );
+      return false;
+    },
       child: Scaffold(
         body: SingleChildScrollView(
           child: Directionality(
@@ -28,7 +54,7 @@ class TrackShipmentScreen extends StatelessWidget {
                     clipBehavior: Clip.none,
                     children: [
                       Container(
-                        height: SizeConfig.screenHeight * .38,
+                        height: SizeConfig.screenHeight * .44,
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(20),
@@ -41,16 +67,16 @@ class TrackShipmentScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               Padding(
-                                padding: EdgeInsets.all(
-                                    SizeConfig.screenWidth * .05),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: SizeConfig.screenWidth * .1,
+                                    horizontal: SizeConfig.screenWidth * .05),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
                                       children: [
-                                        Image.asset(
-                                            'assets/images/profile.png'),
+                                        Image.asset('assets/images/profile.png'),
                                         const SizedBox(
                                           width: 10,
                                         ),
@@ -66,9 +92,6 @@ class TrackShipmentScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(
-                                height: SizeConfig.screenHeight * .02,
-                              ),
                               Padding(
                                 padding: EdgeInsets.only(
                                     right: SizeConfig.screenWidth * .055),
@@ -81,8 +104,7 @@ class TrackShipmentScreen extends StatelessWidget {
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           letterSpacing: 2,
-                                          fontSize:
-                                              SizeConfig.screenWidth * .05),
+                                          fontSize: SizeConfig.screenWidth * .05),
                                     ),
                                     Image.asset('assets/images/circle_map.png',
                                         width: SizeConfig.screenWidth * .36),
@@ -94,37 +116,49 @@ class TrackShipmentScreen extends StatelessWidget {
                       Positioned(
                         bottom: -SizeConfig.screenHeight * .044,
                         width: SizeConfig.screenWidth,
-                        child: CustomTextField(
-                          labelText: 'اكتب رقم التتبع',
-                          fillColor: Colors.white,
-                          filled: true,
-                          // hintText: 'اكتب رقم التتبع',
-                          fontSize: 15,
-                          enableText: true,
-                          verticalPadding: .03,
-                          horizontalPadding: .05,
-                          keyboardType: TextInputType.number,
-                          suffixIcon: Padding(
-                            padding:
-                                EdgeInsets.all(SizeConfig.screenWidth * .025),
-                            child: Image.asset('assets/images/search_icon.png'),
+                        child: Form(
+                          key: _formKey,
+                          child: CustomTextField(
+                            labelText: 'اكتب رقم التتبع',
+                            fillColor: Colors.white,
+                            filled: true,
+                            // hintText: 'اكتب رقم التتبع',
+                            fontSize: 15,
+                            enableText: true,
+                            horizontalPadding: .05,
+                            verticalPadding: .03,
+                            keyboardType: TextInputType.number,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return 'ادخل رقم الشحنه';
+                              }
+                              return null;
+                            },
+                            suffixIcon: Padding(
+                              padding:
+                                  EdgeInsets.all(SizeConfig.screenWidth * .023),
+                              child: Image.asset('assets/images/search_icon.png'),
+                            ),
+                            onChange: (v) {
+                              shipmentId = int.parse(v);
+                            },
                           ),
-                          onChange: (v) {
-                          shipmentId=int.parse(v);
-                          },
                         ),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: SizeConfig.screenHeight * .033,
+                    height: SizeConfig.screenHeight * .037,
                   ),
                   Padding(
                     padding: EdgeInsets.all(SizeConfig.screenWidth * .03),
                     child: CustomBtn(
                       showImage: false,
                       onChange: () async {
-                        push(ShipmentDetailsScreen(shipmentId: shipmentId));
+                        if (_formKey.currentState!.validate()) {
+                          push(ShipmentDetailsScreen(shipmentId: shipmentId));
+
+                        }
                       },
                       backgroundColor: weevoPrimaryOrangeColor,
                       height: SizeConfig.screenHeight * .075,
@@ -149,40 +183,14 @@ class TrackShipmentScreen extends StatelessWidget {
                       scale: 0.9,
                       pagination: SwiperPagination(
                           alignment: Alignment.bottomCenter,
-                          margin: EdgeInsets.only(
-                              top: SizeConfig.screenHeight * .2),
+                          margin:
+                              EdgeInsets.only(top: SizeConfig.screenHeight * .2),
                           builder: DotSwiperPaginationBuilder(
                             activeColor: weevoPrimaryOrangeColor,
                           )),
                       autoplay: true,
                     ),
                   )
-                  // CarouselSlider(
-                  //   items: List.generate(
-                  //    2,
-                  //         (int i) =>
-                  //
-                  //
-                  //        ClipRRect(
-                  //         borderRadius: BorderRadius.circular(12.0),
-                  //         child: Image.asset(
-                  //            'assets/images/slider_image.png',
-                  //           fit: BoxFit.fill,
-                  //           width: SizeConfig.screenWidth,
-                  //         ),
-                  //       ),
-                  //
-                  //   ),
-                  //   options: CarouselOptions(
-                  //
-                  //       autoPlay: true,
-                  //       aspectRatio: 2.0,
-                  //       enlargeCenterPage: true,
-                  //       enlargeStrategy: CenterPageEnlargeStrategy.scale,
-                  //       viewportFraction: 0.8,
-                  //       onPageChanged:
-                  //           (int i, CarouselPageChangedReason reason) {}),
-                  // ),
                 ]),
           ),
         ),

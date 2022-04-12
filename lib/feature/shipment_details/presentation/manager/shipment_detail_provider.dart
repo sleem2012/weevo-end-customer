@@ -19,7 +19,7 @@ class GetShipmentDetailNotifier extends StateNotifier<AsyncValue<ShipmentDetails
 
   Future<ShipmentDetailsModel> getShipmentDetail({ int? shipmentId}) async {
     Response response = await _utils.requstData(
-      url: 'shipments/$shipmentId',
+      url: '/api/v1/end-user/shipments/$shipmentId',
       body: {},
       get: true,
     );

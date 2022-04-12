@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../themes/screen_utility.dart';
 import '../themes/themes.dart';
 import '../utlis/size_config.dart';
 
@@ -22,12 +23,14 @@ class CustomTextField extends StatelessWidget {
     this.filled,
     this.verticalPadding,
     this.horizontalPadding,
-
     this.horizontalMargin,
     this.globalKey,
     this.maxLines = 1,
     this.fontSize,
-    this.onChange, this.onTap, this.focusNode, this.boxWidth,
+    this.onChange,
+    this.onTap,
+    this.focusNode,
+    this.boxWidth,
   }) : super(key: key);
 
   final String? hintText, labelText;
@@ -61,7 +64,7 @@ class CustomTextField extends StatelessWidget {
       child: SizedBox(
         width: boxWidth,
         child: TextFormField(
-onTap: onTap,
+          onTap: onTap,
           key: globalKey,
           onChanged: onChange,
           inputFormatters: formatter,
@@ -82,11 +85,13 @@ onTap: onTap,
             ),
             contentPadding: EdgeInsets.symmetric(
                 vertical: SizeConfig.screenHeight * (verticalPadding ?? 0.022),
-                horizontal: SizeConfig.screenWidth *(horizontalPadding ??  0.02)),
+                horizontal:
+                    SizeConfig.screenWidth * (horizontalPadding ?? 0.02)),
             suffixIcon: suffixIcon,
             errorStyle: const TextStyle(
               color: Colors.red,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.bold
+
             ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14),
@@ -97,18 +102,18 @@ onTap: onTap,
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14),
-              borderSide:  BorderSide(
-                color: Colors.grey.shade200,
-                width: 2,
+              borderSide: BorderSide(
+                color: Colors.deepOrangeAccent.shade100,
+                width: 2.0,
               ),
             ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(14),
-              borderSide: const BorderSide(
-                color:  Color(0xffF5F5F5),
-                width: 2,
-              ),
-            ),
+            // focusedErrorBorder: OutlineInputBorder(
+            //   borderRadius: BorderRadius.circular(14),
+            //   borderSide: const BorderSide(
+            //     color: Colors.grey,
+            //     width: 25,
+            //   ),
+            // ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14),
               borderSide: BorderSide(
@@ -119,14 +124,15 @@ onTap: onTap,
             disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14),
               borderSide: const BorderSide(
-                color: const Color(0xffF5F5F5),
+                color: Color(0xffF5F5F5),
                 width: 4,
               ),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14),
-              borderSide: BorderSide(
-                color: Theme.of(context).errorColor,
+              borderSide: const BorderSide(
+                color: Colors.red,
+                width: 2,
               ),
             ),
             // filled: true,
